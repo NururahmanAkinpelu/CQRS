@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Repositories;
+using Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,8 @@ namespace Application.Services.User.Queries.GetUser
 
         public async Task<GetUserRequestResponse> Handle(GetUserRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUser(request.Id);
-            if (user == null)
+            var getuser = await _userRepository.GetUser(request.Id);
+            if (getuser == null)
             {
                 return new GetUserRequestResponse
                 {
@@ -28,14 +29,19 @@ namespace Application.Services.User.Queries.GetUser
                 };
             }
 
+            var user = new Users
+            {
+                Id = getuser.Id,
+                FirstName = getuser.FirstName,
+                LastName = getuser.LastName,
+                Email = getuser.Email,
+            };
+
             return new GetUserRequestResponse
             {
+                User = user,
                 Message = "User found",
-                Status = true,
-                UserId = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email
+                Status = true
             };
         }
     }

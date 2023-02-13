@@ -34,14 +34,14 @@ namespace WebApi.Controllers
             return result.Status ? Ok(result) : BadRequest(result);
         }
 
-        [HttpGet("Id")]
+        [HttpGet("Create/{id}")]
         public async Task<IActionResult> GetUser([FromRoute]int id)
         {
             var result = await _mediator.Send(new GetUserRequest { Id = id });
             return result.Status ? Ok(result) : BadRequest(result);
         }
 
-        [HttpDelete("Id")]
+        [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var result = await _mediator.Send(new DeleteUserRequest { Id = id });

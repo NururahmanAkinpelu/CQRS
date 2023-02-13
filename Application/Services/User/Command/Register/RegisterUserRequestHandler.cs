@@ -41,9 +41,7 @@ namespace Application.Services.User.Command.Register
 
             return new UserRequestResponse
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email,
+                User = user,
                 Message = "User Created",
                 Status = true
             };

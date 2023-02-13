@@ -17,7 +17,6 @@ namespace Application.Services.User.Queries.Update
             _userRepository= userRepository;
         }
 
-
         Task<UpdateUserRequestResponse> IRequestHandler<UpdateUserRequest, UpdateUserRequestResponse>.Handle(UpdateUserRequest request, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();

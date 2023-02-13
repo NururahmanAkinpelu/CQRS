@@ -5,12 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Services.User.Queries.Update
+namespace Application.Services.User.Queries.GetAll
 {
-    public class UpdateUserRequestResponse
+    public class GetAllUsersRequestRespnse
     {
-        public Users? User { get; set; }
+        public ICollection<Users>? Users { get; set; }
         public string? Message { get; set; }
         public bool Status { get; set; }
+
     }
 }
