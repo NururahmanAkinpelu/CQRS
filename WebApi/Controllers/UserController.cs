@@ -1,6 +1,7 @@
 ﻿
 using Application.Services.User.Command.Register;
 using Application.Services.User.Queries.Delete;
+using Application.Services.User.Queries.GetAll;
 using Application.Services.User.Queries.GetUser;
 using Application.Services.User.Queries.Update;
 using MediatR;
@@ -34,10 +35,17 @@ namespace WebApi.Controllers
             return result.Status ? Ok(result) : BadRequest(result);
         }
 
-        [HttpGet("Create/{id}")]
+        [HttpGet("Get/{id}")]
         public async Task<IActionResult> GetUser([FromRoute]int id)
         {
             var result = await _mediator.Send(new GetUserRequest { Id = id });
+            return result.Status ? Ok(result) : BadRequest(result);
+        }
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAll()
+        {
+            var result = await _mediator.Send(new GetAllUsersRequest());
             return result.Status ? Ok(result) : BadRequest(result);
         }
 
@@ -47,6 +55,7 @@ namespace WebApi.Controllers
             var result = await _mediator.Send(new DeleteUserRequest { Id = id });
             return result.Success ? Ok(result) : BadRequest(result);
         }
+
 
 /*        [HttpPut("Id")]
         public async Task<IActionResult> UpdateUser([FromRoute]int id, UpdateUserRequest request)
